@@ -11,3 +11,114 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+body {
+  background-color: rgb(226, 224, 224);
+}
+.post-contain {
+  width: 70vw;
+  margin-top: 20px;
+  height: auto;
+  padding: 5px;
+}
+.post-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+.comments-likes {
+  margin-top: 5px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+}
+.comments-likes div {
+  width: 33%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+
+.comments-likes div img {
+  height: 100%;
+}
+.comments-likes div:hover {
+  background-color: rgb(236, 233, 233);
+}
+.counter-likes {
+  height: 15px;
+  font-size: 0.7rem;
+}
+.counter-likes img {
+  height: 100%;
+  margin-left: 1%;
+}
+.comment-box {
+  margin-top: 5px;
+}
+input {
+  outline: none;
+}
+.comment-box input {
+  font-size: 0.8rem;
+}
+.comment-box label {
+  font-size: 0.8rem;
+}
+.comment-post {
+  background-color: rgb(214, 210, 210);
+}
+.navbar {
+  padding: 5px;
+  background-color: rgb(0, 110, 255);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.searchbar {
+  width: 260px;
+  height: 25px;
+  border-radius: 5px;
+
+  border-color: transparent;
+}
+.user-profile {
+  color: white;
+}
+.logged {
+  padding: 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: all 1s;
+}
+.logged:hover {
+  background-color: white;
+  color: black;
+}
+.login-contain {
+  margin: 100px auto;
+  text-align: center;
+  padding: 5px;
+  height: 250px;
+  width: 300px;
+  box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  background-color: white;
+}
+.login-user {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+.login-user img {
+  width: 35px;
+}
