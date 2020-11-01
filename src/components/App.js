@@ -12,7 +12,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { posts } = this.props;
+    console.log(this.props);
+    const { posts, auth } = this.props;
     console.log('PROPS', this.props);
     return (
       <Router>
@@ -37,6 +38,7 @@ class App extends React.Component {
 function mapstatetoprops(state) {
   return {
     posts: state.posts,
+    auth: state.auth,
   };
 }
 
