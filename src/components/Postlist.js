@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -10,12 +10,13 @@ import {
   Icon,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { createComment } from '../actions/post';
+import { connect, useDispatch } from 'react-redux';
+import { addLikeToStore, createComment, togglelike } from '../actions/post';
 
 function Postlist(props) {
   const dispatch = useDispatch();
   const [comment, setComment] = useState('');
+
   const postcomment = (e) => {
     e.preventDefault();
 
@@ -23,6 +24,18 @@ function Postlist(props) {
     setComment('');
     //dispatch(comment, props.post._id);
   };
+  const triggerlike = () => {
+    dispatch(togglelike(props.post._id));
+  };
+  const checklikestate = () => {
+    for (let i = 0; i < props.post.likes.length; i++) {
+      console.log(props.post._id, props.post.likes[i]);
+      if (props.post.likes[i] == props.post._id) return true;
+    }
+    return false;
+  };
+  const likestate = checklikestate();
+  console.log(likestate);
   return (
     <Card className="post-contain">
       <Link className="header" to={`/user/${props.userid}`}>
@@ -40,19 +53,27 @@ function Postlist(props) {
       <p>{props.post.content}</p>
       <div className="counter-likes">
         <img src="https://www.flaticon.com/svg/static/icons/svg/833/833472.svg"></img>
-        <span>12</span>
+        <span>{props.post.likes.length}</span>
         <img src="https://www.flaticon.com/svg/static/icons/svg/1380/1380338.svg"></img>
-        <span>4</span>
+        <span>{props.post.comments.length}</span>
       </div>
 
       <div className="comments-likes">
-        <div>
+        <div onClick={triggerlike}>
           <b>Like</b>
-          <img
-            style={{ marginLeft: '5px' }}
-            id="like"
-            src="https://www.flaticon.com/svg/static/icons/svg/1077/1077035.svg"
-          ></img>
+          {likestate ? (
+            <img
+              style={{ marginLeft: '5px' }}
+              id="like"
+              src="https://www.flaticon.com/svg/vstatic/svg/833/833472.svg?token=exp=1610387398~hmac=650350df39833450e1d3675f7b39c163"
+            ></img>
+          ) : (
+            <img
+              style={{ marginLeft: '5px' }}
+              id="like"
+              src="https://www.flaticon.com/svg/static/icons/svg/1077/1077035.svg"
+            ></img>
+          )}
         </div>
         <div>
           <b>Comment</b>
@@ -107,4 +128,11 @@ function Postlist(props) {
   );
 }
 
-export default Postlist;
+function mapstatetoprops(state) {
+  return {
+    auth: state.auth,
+    likes: state.likes,
+  };
+}
+
+export default connect(mapstatetoprops)(Postlist);

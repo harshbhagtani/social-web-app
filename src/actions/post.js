@@ -1,6 +1,6 @@
 import { APIURLS } from '../helpers/url';
 import { getformbody } from '../helpers/utils';
-import { UPDATE_POST } from './actiontype';
+import { UPDATE_LIKES, UPDATE_POST } from './actiontype';
 export function fetchpost() {
   return (dispatch) => {
     const url = APIURLS.fetchposts();
@@ -52,5 +52,50 @@ export function createComment(content, post_id) {
         console.log(data);
         dispatch(fetchpost());
       });
+  };
+}
+
+export function togglelike(id) {
+  return (dispatch) => {
+    const url = APIURLS.toggleLike(id);
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          dispatch(fetchpost());
+        }
+      });
+  };
+}
+
+export function addLikeToStore(postId) {
+  return (dispatch) => {
+    const url = APIURLS.getlikedata(postId);
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          dispatch(storelikesdata(data.data));
+        }
+      });
+  };
+}
+
+export function storelikesdata(likes) {
+  return {
+    type: UPDATE_LIKES,
+    likes,
   };
 }

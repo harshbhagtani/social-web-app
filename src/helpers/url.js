@@ -14,4 +14,8 @@ export const APIURLS = {
     `http://codeial.com:8000/api/v2/friendship/remove_friendship?user_id=${userId}`,
   createpost: () => `http://codeial.com:8000/api/v2/posts/create`,
   createcomment: () => `http://codeial.com:8000/api/v2/comments`,
+  toggleLike: (id) =>
+    `http://codeial.com:8000/api/v2/likes/toggle?likeable_id=${id}&likeable_type=Post`,
+  getlikedata: (id) =>
+    `http://codeial.com:8000/api/v2/likes?likeable_id=${id}&likeable_type=Post`,
 };
