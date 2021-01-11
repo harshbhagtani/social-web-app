@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -6,23 +6,37 @@ import {
   Avatar,
   InputLabel,
   Input,
+  Button,
+  Icon,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createComment } from '../actions/post';
 
 function Postlist(props) {
+  const dispatch = useDispatch();
+  const [comment, setComment] = useState('');
+  const postcomment = (e) => {
+    e.preventDefault();
+
+    dispatch(createComment(comment, props.post._id));
+    setComment('');
+    //dispatch(comment, props.post._id);
+  };
   return (
     <Card className="post-contain">
-      <div className="header">
+      <Link className="header" to={`/user/${props.userid}`}>
         <Avatar
           alt="sssss"
           src="https://userpic.codeforces.com/1389245/title/28f5a63a9d1d0b34.jpg"
         />
         <div>
           <div>
-            <b>Harsh</b>
+            <b>{props.post.user.name}</b>
           </div>
           <div style={{ fontSize: '.7rem' }}>a minute ago</div>
         </div>
-      </div>
+      </Link>
       <p>{props.post.content}</p>
       <div className="counter-likes">
         <img src="https://www.flaticon.com/svg/static/icons/svg/833/833472.svg"></img>
@@ -58,28 +72,36 @@ function Postlist(props) {
         </div>
       </div>
       <div className="comment-box">
-        <FormControl>
-          <InputLabel>Start typing a comment</InputLabel>
-          <Input />
-        </FormControl>
+        <form>
+          <input
+            type="text"
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
+          ></input>
+          <button onClick={postcomment}>Post</button>
+        </form>
 
         <h4>Comments</h4>
-        <div className="comment-post">
-          <div className="header" style={{ fontSize: '.7rem' }}>
-            <Avatar
-              style={{ width: '30px', height: '30px' }}
-              alt="sssss"
-              src="https://userpic.codeforces.com/1389245/title/28f5a63a9d1d0b34.jpg"
-            />
-            <div>
-              <div>
-                <b>Harsh</b>
+        {props.post.comments.map((data) => {
+          return (
+            <div className="comment-post">
+              <div className="header" style={{ fontSize: '.7rem' }}>
+                <Avatar
+                  style={{ width: '30px', height: '30px' }}
+                  alt="sssss"
+                  src="https://userpic.codeforces.com/1389245/title/28f5a63a9d1d0b34.jpg"
+                />
+                <div>
+                  <div>
+                    <b>{data.user.name}</b>
+                  </div>
+                  <div style={{ fontSize: '.5rem' }}>a minute ago</div>
+                </div>
               </div>
-              <div style={{ fontSize: '.5rem' }}>a minute ago</div>
+              <span style={{ fontSize: '.7rem' }}>{data.content}</span>
             </div>
-          </div>
-          <span style={{ fontSize: '.7rem' }}>{props.post.content}</span>
-        </div>
+          );
+        })}
       </div>
     </Card>
   );

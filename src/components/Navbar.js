@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authorizeuser, logOut } from '../actions/auth';
 
 function Navbar(props) {
+  const history = useHistory();
+  useEffect(() => {}, [props.auth.user]);
+  const opensettings = () => {
+    history.push('/settings');
+  };
+
+  const logout = () => {
+    if (props.auth.isLoggedin) {
+      props.dispatch(logOut());
+      localStorage.clear();
+      history.push('/Login');
+    }
+  };
   return (
     <div className="navbar">
-      <div>
-        <h1 style={{ color: 'white' }}>Codeial</h1>
+      <div onClick={() => history.push('/')}>
+        <h1 style={{ color: 'white' }}>Fakebook</h1>
       </div>
 
       <div>
@@ -30,13 +46,25 @@ function Navbar(props) {
         </form>
       </div>
       <div className="user-profile">
-        <p>Harsh Bhagtani</p>
-        <p>Harsh.Bhagtani</p>
+        <p>{props.auth.user && props.auth.user.name}</p>
+        <p>{props.auth.user && props.auth.user.email}</p>
       </div>
 
-      <div className="logged">Log-out</div>
+      <div className="logged">
+        <div onClick={logout}>
+          {props.auth.isLoggedin ? 'Log-out' : 'Log-in'}
+        </div>
+      </div>
+      <div className="logged">
+        <div onClick={opensettings}>Settings</div>
+      </div>
     </div>
   );
 }
+function mapstatetoprops(state) {
+  return {
+    auth: state.auth,
+  };
+}
 
-export default Navbar;
+export default connect(mapstatetoprops)(Navbar);

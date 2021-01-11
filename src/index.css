@@ -15,7 +15,7 @@ body {
   background-color: rgb(226, 224, 224);
 }
 .post-contain {
-  width: 70vw;
+  width: 65vw;
   margin-top: 20px;
   height: auto;
   padding: 5px;
@@ -72,6 +72,7 @@ input {
 }
 .comment-post {
   background-color: rgb(214, 210, 210);
+  margin-top: 10px;
 }
 .navbar {
   padding: 5px;
@@ -106,7 +107,8 @@ input {
   margin: 100px auto;
   text-align: center;
   padding: 5px;
-  height: 250px;
+  padding-bottom: 50px;
+  height: auto;
   width: 300px;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
@@ -121,4 +123,65 @@ input {
 }
 .login-user img {
   width: 35px;
+}
+.settings {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.settings-userinfo {
+  margin-top: 15px;
+  background-color: white;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.161);
+  width: 60%;
+
+  height: 500px;
+}
+.profile-image {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.profile-image > div {
+  width: 120px;
+  height: 120px;
+  background-color: blue;
+  border-radius: 50%;
+}
+.settings-content {
+  width: 60%;
+  margin: 0 auto;
+}
+.friends-list {
+  background-color: white;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.161);
+  height: 400px;
+  width: 27vw;
+  margin-top: 20px;
+  padding: 10px;
+}
+.friends-list-container {
+  border: 1px solid black;
+  height: 340px;
+
+  overflow: auto;
+}
+.new-post {
+  background-color: white;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.161);
+  height: 210px;
+  margin-top: 20px;
+  margin-left: 5px;
+  border-radius: 10px;
+  padding: 5px;
+
+  width: 65vw;
+}
+.new-post > textarea {
+  height: 160px;
+  width: 64vw;
+  outline: none;
+  border: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.161);
 }

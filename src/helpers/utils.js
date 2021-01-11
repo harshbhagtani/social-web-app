@@ -1,16 +1,12 @@
-export function getformbody(params){
+export function getformbody(params) {
+  let formbody = [];
 
-let formbody=[],
+  for (let property in params) {
+    let encodedproperty = encodeURIComponent(property);
+    let encodedvalue = encodeURIComponent(params[property]);
 
-for(let property in params){
-    let encodedproperty=encodeURIComponent(property);
-    let encodedvalue=encodeURIComponent(params[property]);
+    formbody.push(encodedproperty + '=' + encodedvalue);
+  }
 
-    formbody(encodedproperty+'='+encodedvalue);
-}
-
-
-return formbody.join('&');
-
-
+  return formbody.join('&');
 }

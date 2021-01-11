@@ -1,19 +1,19 @@
 import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../actions/auth';
+import { login, signup } from '../actions/auth';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-
     //   this.emailRef = React.createRef();uncontrooled form components value stored in dom but not in react state
     //  this.passwordRef = React.createRef();
 
     this.state = {
       email: '',
       password: '',
+      confirmpass: '',
+      name: '',
     };
   }
 
@@ -30,29 +30,36 @@ class Login extends Component {
         password: e.target.value,
       });
     }
+    if (e.target.type === 'text') {
+      this.setState({
+        name: e.target.value,
+      });
+    }
   };
   submit = (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
+    const { email, password, name, confirmpass } = this.state;
 
     console.log('email', email);
     console.log('email', password);
 
-    this.props.dispatch(login(email, password));
+    console.log('email', name);
+    console.log('email', confirmpass);
+    this.props.dispatch(signup(email, password, name, confirmpass));
   };
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
-    //console.log('ppsss', this.props.location.state);
-
-    if (this.props.auth.isLoggedin) {
-      return <Redirect to={from}></Redirect>;
-    }
-
     return (
       <form className="login-contain">
-        <h2 style={{ color: '#3f51b5' }}>LOG IN</h2>
+        <h2 style={{ color: '#3f51b5' }}>SIGN UP</h2>
 
+        <div className="login-user">
+          <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828399.svg"></img>
+          <FormControl>
+            <InputLabel>Name</InputLabel>
+            <Input onChange={this.handleChange} type="text" />
+          </FormControl>
+        </div>
         <div className="login-user">
           <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828399.svg"></img>
           <FormControl>
@@ -67,6 +74,18 @@ class Login extends Component {
             <Input type="password" onChange={this.handleChange} />
           </FormControl>
         </div>
+        <div className="login-user">
+          <img src="https://www.flaticon.com/svg/static/icons/svg/3593/3593563.svg"></img>
+          <FormControl>
+            <InputLabel> Confirm Password</InputLabel>
+            <Input
+              type="password"
+              onChange={(e) => {
+                this.setState({ confirmpass: e.target.value });
+              }}
+            />
+          </FormControl>
+        </div>
         <br></br>
         <Button
           variant="contained"
@@ -74,7 +93,7 @@ class Login extends Component {
           type="submit"
           onClick={this.submit}
         >
-          Log in
+          Sign up
         </Button>
       </form>
     );
