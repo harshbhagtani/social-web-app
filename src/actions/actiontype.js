@@ -18,3 +18,4 @@ export const FETCH_FRIENDS_SUCCESS = 'FETCH_FRIENDS_SUCCESS';
 //likes
 
 export const UPDATE_LIKES = 'UPDATE_LIKES';
+//search a user

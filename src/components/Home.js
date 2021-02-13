@@ -6,6 +6,7 @@ import { fetchuserfriends } from '../actions/friends';
 import { Link } from 'react-router-dom';
 import { Avatar, Button } from '@material-ui/core';
 import { createPost } from '../actions/post';
+import Chat from './Chat';
 
 function Home(props) {
   const [newpost, setNewpost] = useState('');
@@ -46,7 +47,7 @@ function Home(props) {
 
         {props.auth.userfriends.map((data) => {
           return (
-            <div className="friends-list-container">
+            <div>
               <Link
                 style={{
                   color: 'black',
@@ -66,6 +67,7 @@ function Home(props) {
           );
         })}
       </div>
+      <Chat />
     </div>
   );
 }

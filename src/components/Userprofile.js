@@ -1,12 +1,17 @@
 import { Button, Card, Snackbar } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { fetchuserprofile } from '../actions/profile';
 import { adduserasfriend, removeuserasfriend } from '../actions/friends';
 class Userprofile extends Component {
   componentDidMount() {
     this.props.dispatch(fetchuserprofile(this.props.match.params.userid));
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.userid != this.props.match.params.userid) {
+      this.props.dispatch(fetchuserprofile(this.props.match.params.userid));
+    }
   }
 
   addFriend = () => {
