@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { edituser } from '../actions/auth';
 import Navbar from './Navbar';
+import avatar from '../assets/avatar.png';
 
 class Settings extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class Settings extends Component {
       <div className="settings">
         <div className="settings-userinfo">
           <div className="profile-image">
-            <div></div>
+            <img src={avatar}></img>
           </div>
           <div className="settings-content">
             <div>

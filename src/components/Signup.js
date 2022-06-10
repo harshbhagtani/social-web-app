@@ -2,6 +2,9 @@ import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login, signup } from '../actions/auth';
+import mail from '../assets/mail.png';
+import lock from '../assets/lock.png';
+import avatar from '../assets/avatar.png';
 
 class Login extends Component {
   constructor(props) {
@@ -54,28 +57,28 @@ class Login extends Component {
         <h2 style={{ color: '#3f51b5' }}>SIGN UP</h2>
 
         <div className="login-user">
-          <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828399.svg"></img>
+          <img src={avatar}></img>
           <FormControl>
             <InputLabel>Name</InputLabel>
             <Input onChange={this.handleChange} type="text" />
           </FormControl>
         </div>
         <div className="login-user">
-          <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828399.svg"></img>
+          <img src={mail}></img>
           <FormControl>
             <InputLabel>Email</InputLabel>
             <Input onChange={this.handleChange} type="email" />
           </FormControl>
         </div>
         <div className="login-user">
-          <img src="https://www.flaticon.com/svg/static/icons/svg/3593/3593563.svg"></img>
+          <img src={lock}></img>
           <FormControl>
             <InputLabel>Password</InputLabel>
             <Input type="password" onChange={this.handleChange} />
           </FormControl>
         </div>
         <div className="login-user">
-          <img src="https://www.flaticon.com/svg/static/icons/svg/3593/3593563.svg"></img>
+          <img src={lock}></img>
           <FormControl>
             <InputLabel> Confirm Password</InputLabel>
             <Input

@@ -12,6 +12,11 @@ import {
 import { Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { addLikeToStore, createComment, togglelike } from '../actions/post';
+import likee from '../assets/likeee.png';
+import commentt from '../assets/comment.png';
+import share from '../assets/share.png';
+import liked from '../assets/liked.png';
+import avatar from '../assets/avatar.png';
 
 function Postlist(props) {
   const dispatch = useDispatch();
@@ -38,11 +43,12 @@ function Postlist(props) {
   console.log(likestate);
   return (
     <Card className="post-contain">
-      <Link className="header" to={`/user/${props.userid}`}>
-        <Avatar
-          alt="sssss"
-          src="https://userpic.codeforces.com/1389245/title/28f5a63a9d1d0b34.jpg"
-        />
+      <Link
+        className="header"
+        to={`/user/${props.userid}`}
+        style={{ textDecoration: 'none', color: 'black' }}
+      >
+        <Avatar alt="sssss" src={avatar} />
         <div>
           <div>
             <b>{props.post.user.name}</b>
@@ -52,9 +58,9 @@ function Postlist(props) {
       </Link>
       <p>{props.post.content}</p>
       <div className="counter-likes">
-        <img src="https://www.flaticon.com/svg/static/icons/svg/833/833472.svg"></img>
+        <img src={likee}></img>
         <span>{props.post.likes.length}</span>
-        <img src="https://www.flaticon.com/svg/static/icons/svg/1380/1380338.svg"></img>
+        <img src={commentt}></img>
         <span>{props.post.comments.length}</span>
       </div>
 
@@ -62,34 +68,18 @@ function Postlist(props) {
         <div onClick={triggerlike}>
           <b>Like</b>
           {likestate ? (
-            <img
-              style={{ marginLeft: '5px' }}
-              id="like"
-              src="https://www.flaticon.com/svg/vstatic/svg/833/833472.svg?token=exp=1610387398~hmac=650350df39833450e1d3675f7b39c163"
-            ></img>
+            <img style={{ marginLeft: '5px' }} id="like" src={liked}></img>
           ) : (
-            <img
-              style={{ marginLeft: '5px' }}
-              id="like"
-              src="https://www.flaticon.com/svg/static/icons/svg/1077/1077035.svg"
-            ></img>
+            <img style={{ marginLeft: '5px' }} id="like" src={likee}></img>
           )}
         </div>
         <div>
           <b>Comment</b>
-          <img
-            style={{ marginLeft: '5px' }}
-            id="comment"
-            src="https://www.flaticon.com/svg/static/icons/svg/1380/1380338.svg"
-          ></img>
+          <img style={{ marginLeft: '5px' }} id="comment" src={commentt}></img>
         </div>
         <div>
           <b style={{ fontSize: '1.0rem' }}>Share</b>
-          <img
-            style={{ marginLeft: '5px' }}
-            id="share"
-            src="https://www.flaticon.com/svg/static/icons/svg/1828/1828960.svg"
-          ></img>
+          <img style={{ marginLeft: '5px' }} id="share" src={share}></img>
         </div>
       </div>
       <div className="comment-box">
@@ -97,9 +87,23 @@ function Postlist(props) {
           <input
             type="text"
             onChange={(e) => setComment(e.target.value)}
+            style={{
+              width: '70%',
+              backgroundColor: 'rgb(233,233,233)',
+              border: 'none',
+              outline: 'none',
+              height: '25px',
+            }}
             value={comment}
           ></input>
-          <button onClick={postcomment}>Post</button>
+          <Button
+            onClick={postcomment}
+            style={{ height: '25px', marginLeft: '3px', borderRadius: '0' }}
+            color="primary"
+            variant="contained"
+          >
+            Post
+          </Button>
         </form>
 
         <h4>Comments</h4>
@@ -110,7 +114,7 @@ function Postlist(props) {
                 <Avatar
                   style={{ width: '30px', height: '30px' }}
                   alt="sssss"
-                  src="https://userpic.codeforces.com/1389245/title/28f5a63a9d1d0b34.jpg"
+                  src={avatar}
                 />
                 <div>
                   <div>

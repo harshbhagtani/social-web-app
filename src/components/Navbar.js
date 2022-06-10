@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authorizeuser, logOut } from '../actions/auth';
 import { APIURLS } from '../helpers/url';
+import search from '../assets/seach.png';
 
 function Navbar(props) {
   const history = useHistory();
@@ -41,12 +42,14 @@ function Navbar(props) {
       props.dispatch(logOut());
       localStorage.clear();
       history.push('/Login');
+    } else {
+      history.push('/Login');
     }
   };
   return (
     <div className="navbar">
-      <div onClick={() => history.push('/')}>
-        <h1 style={{ color: 'white' }}>Fakebook</h1>
+      <div onClick={() => history.push('/')} style={{ cursor: 'pointer' }}>
+        <h1 style={{ color: 'white', margin: '0' }}>{'<FakeBook />'}</h1>
       </div>
 
       <div>
@@ -63,15 +66,15 @@ function Navbar(props) {
           <Button
             variant="outlined"
             color="primary"
-            style={{ background: 'white' }}
+            style={{
+              background: 'white',
+              borderRadius: '0px',
+              cursor: 'pointer',
+            }}
             disabled={searchname === ''}
             onClick={searchprofile}
           >
-            <img
-              id="search"
-              src="https://www.flaticon.com/svg/static/icons/svg/622/622669.svg"
-              style={{ height: '15px' }}
-            ></img>
+            <img id="search" src={search} style={{ height: '15px' }}></img>
           </Button>
         </form>
         <div style={{ display: listshow }}>
@@ -97,14 +100,19 @@ function Navbar(props) {
                 </div>
               );
             })}
-          </div>
-          <div
-            style={{ height: '20px', background: 'red', color: 'white' }}
-            onClick={() => {
-              setListshow('none');
-            }}
-          >
-            Clear
+            <div
+              style={{
+                height: '20px',
+                background: 'red',
+                color: 'white',
+                width: '300px',
+              }}
+              onClick={() => {
+                setListshow('none');
+              }}
+            >
+              Clear
+            </div>
           </div>
         </div>
       </div>

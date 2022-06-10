@@ -78,15 +78,18 @@ input {
   padding: 5px;
   background-color: rgb(0, 110, 255);
   display: flex;
-
-  justify-content: space-around;
+  justify-content: space-between;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  left: 0;
   align-items: center;
 }
 
 .searchbar {
-  width: 260px;
+  width: 300px;
   height: 25px;
-  border-radius: 5px;
 
   border-color: transparent;
 }
@@ -99,6 +102,7 @@ input {
   color: white;
   font-weight: bold;
   transition: all 1s;
+  cursor: pointer;
 }
 .logged:hover {
   background-color: white;
@@ -186,11 +190,16 @@ input {
   border: transparent;
   border-bottom: 1px solid rgba(0, 0, 0, 0.161);
 }
+.search-result::-webkit-scrollbar {
+  display: none;
+}
 .search-result {
   background-color: white;
-  border-radius: 5px;
-  width: 100%;
+  padding: 5px;
+  width: 360px;
   height: 120px;
+  border: 1px solid black;
+  position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
 }

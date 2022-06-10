@@ -1,8 +1,10 @@
 import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { login } from '../actions/auth';
+import mail from '../assets/mail.png';
+import lock from '../assets/lock.png';
 
 class Login extends Component {
   constructor(props) {
@@ -54,14 +56,14 @@ class Login extends Component {
         <h2 style={{ color: '#3f51b5' }}>LOG IN</h2>
 
         <div className="login-user">
-          <img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828399.svg"></img>
+          <img src={mail}></img>
           <FormControl>
             <InputLabel>Email</InputLabel>
             <Input onChange={this.handleChange} type="email" />
           </FormControl>
         </div>
         <div className="login-user">
-          <img src="https://www.flaticon.com/svg/static/icons/svg/3593/3593563.svg"></img>
+          <img src={lock}></img>
           <FormControl>
             <InputLabel>Password</InputLabel>
             <Input type="password" onChange={this.handleChange} />
@@ -76,6 +78,9 @@ class Login extends Component {
         >
           Log in
         </Button>
+        <p>
+          Don't have an account <Link to="/Signup">Signup</Link>
+        </p>
       </form>
     );
   }

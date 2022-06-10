@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Avatar, Button } from '@material-ui/core';
 import { createPost } from '../actions/post';
 import Chat from './Chat';
+import avatar from '../assets/avatar.png';
 
 function Home(props) {
   const [newpost, setNewpost] = useState('');
@@ -57,7 +58,7 @@ function Home(props) {
                 }}
                 to={`/user/${data.to_user._id}`}
               >
-                <Avatar></Avatar>
+                <Avatar src={avatar}></Avatar>
                 <div style={{ marginLeft: '10px' }}>
                   <div style={{ fontSize: '18px' }}>{data.to_user.name}</div>
                   <div style={{ fontSize: '12px' }}>{data.to_user.email}</div>
